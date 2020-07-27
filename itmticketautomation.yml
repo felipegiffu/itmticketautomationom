@@ -1,0 +1,28 @@
+#############################################################################################
+###   NAME:              itmticketautomation.yml                                             #
+###   VERSION:           1.0                                                                 #
+###   DESCRIPTION:       Automate the ticket on Service Now: ITM start process               #
+###   CREATION DATE:     20/11/2019                                                          #
+###   ESCRITO POR:       Felipe Thomaz Giffu                                                 #
+###   E-MAIL:            felipe.giffu@ibm.com                                                #
+###   PLATFORM:          Red Hat / SUSE                                                      #
+#############################################################################################
+---
+- name: itmticketautomation
+  hosts: massive.boulder.ibm.com
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - name: Execute Script - ITM Start
+      shell:
+        cmd: /opt/IBM/ITM/bin/itmcmd agent start lz
+    - name: Execute Script - ITM Status
+      shell:
+        cmd: /opt/IBM/ITM/bin/cinfo -r
+      register: infoscript
+    - name: Display ITM Status
+      debug:
+        var: infoscript
+...
