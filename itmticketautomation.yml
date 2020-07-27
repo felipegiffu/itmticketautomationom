@@ -9,7 +9,7 @@
 #############################################################################################
 ---
 - name: itmticketautomation
-  hosts: prttestats.pok.ibm.com/
+  hosts: prttestats.pok.ibm.com
   remote_user: ansible
   become: yes
   become_method: sudo
